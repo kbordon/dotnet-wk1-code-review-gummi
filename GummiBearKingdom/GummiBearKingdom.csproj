@@ -12,6 +12,7 @@
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Products\" />
     <Folder Include="Views\Shared\" />
+    <Folder Include="wwwroot\css\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +21,7 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="1.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>

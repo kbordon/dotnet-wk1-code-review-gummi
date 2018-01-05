@@ -9,7 +9,9 @@ namespace GummiBearKingdom.Controllers
 {
     public class ProductsController : Controller
     {
+        // instatiate database context model
         private GummiBearKingdomDbContext db = new GummiBearKingdomDbContext();
+
         public IActionResult Index()
         {
             List<Product> model = db.Products.ToList();

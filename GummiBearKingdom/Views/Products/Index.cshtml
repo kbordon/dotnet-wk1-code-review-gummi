@@ -1,6 +1,31 @@
-﻿@{
+﻿@model IEnumerable<GummiBearKingdom.Models.Product>
+
+@{
     ViewData["Title"] = "Gummi Bear Kingdom : Products";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Products met </h1>
+<h1>Products</h1>
+<p>
+    @Html.ActionLink("Add Product", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+    </tr>
+
+    @foreach (var listProduct in Model)
+    {
+        <tr>
+            <td>
+                <a href='@Url.Action("Index")'>=@Html.DisplayFor(modelItem => listProduct.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => listProduct.Cost)
+            </td>
+        </tr>
+    }
+</table>

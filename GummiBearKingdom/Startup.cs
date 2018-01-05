@@ -27,6 +27,8 @@ namespace GummiBearKingdom
 
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            services.AddMvc();
             services.AddEntityFrameworkMySql()
                     .AddDbContext<GummiBearKingdomDbContext>(options =>
                          options.UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
@@ -41,9 +43,17 @@ namespace GummiBearKingdom
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                        name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                await context.Response.WriteAsync("Something did not load.");
             });
         }
     }
