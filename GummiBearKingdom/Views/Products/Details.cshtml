@@ -17,4 +17,7 @@
 <p>@Html.DisplayNameFor(model => model.Cost):</p>
 <p>@Html.DisplayFor(model => model.Cost)</p>
 
-<p>@Html.ActionLink("Edit", "Edit", new { id = Model.ProductId}) | @Html.ActionLink("Back to Products", "Index")</p>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId}) | 
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ProductId}) |
+    @Html.ActionLink("Back to Products", "Index")</p>

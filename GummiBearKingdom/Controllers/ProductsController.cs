@@ -10,7 +10,7 @@ namespace GummiBearKingdom.Controllers
 {
     public class ProductsController : Controller
     {
-        // instatiate database context model
+        // instantiate database context model
         private GummiBearKingdomDbContext db = new GummiBearKingdomDbContext();
 
         public IActionResult Index()
@@ -48,6 +48,21 @@ namespace GummiBearKingdom.Controllers
         public IActionResult Edit(Product product)
         {
             db.Entry(product).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            Product thisProduct = db.Products.FirstOrDefault(products => products.ProductId == id);
+            return View(thisProduct);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            Product thisProduct = db.Products.FirstOrDefault(products => products.ProductId == id);
+            db.Products.Remove(thisProduct);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
