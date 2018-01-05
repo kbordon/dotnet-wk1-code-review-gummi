@@ -1,0 +1,38 @@
+﻿@model GummiBearKingdom.Models.Product
+@{
+    ViewData["Title"] = "Gummi Bear Kingdom : Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+<hr/>
+<h4>Edit this: @Html.DisplayFor(model => model.Name)</h4>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.ProductId)
+
+    <p>
+        @Html.LabelFor(model => model.Name)
+    </p>
+    <p>
+        @Html.EditorFor(model => model.Name)
+    </p>
+
+    <p>
+        @Html.LabelFor(model => model.Description)
+    </p>
+    <p>
+        @Html.EditorFor(model => model.Description)
+    </p>
+
+    <p>
+        @Html.LabelFor(model => model.Cost)
+    </p>
+    <p>
+        @Html.EditorFor(model => model.Cost)
+    </p>
+
+    <input type="submit" value="Save Changes" class="btn btn-default"/>
+}
+
+@Html.ActionLink("Back to Products", "Index")
