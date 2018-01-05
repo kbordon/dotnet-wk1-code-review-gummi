@@ -9,7 +9,9 @@ html, body {
 }
 
 body {
-    background-color: orangered;
+    background-color: coral;
+    background-image: url('/img/gbk_bg.jpg');
+    background-blend-mode: color-dodge;
 }
 
 .header {
