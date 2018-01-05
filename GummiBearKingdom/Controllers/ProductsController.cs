@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using GummiBearKingdom.Models;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace GummiBearKingdom.Controllers
 {
     public class ProductsController : Controller
@@ -15,7 +13,9 @@ namespace GummiBearKingdom.Controllers
         public IActionResult Index()
         {
             List<Product> model = db.Products.ToList();
-            return View();
+            return View(model);
         }
+
+
     }
 }
