@@ -1,0 +1,34 @@
+﻿@model GummiBearKingdom.Models.Product
+@{
+    ViewData["Title"] = "Gummi Bear Kingdom : Products - Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add a product to the Gummi Bear Kingdom</h2>
+<hr/>
+
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.LabelFor(model => model.Name)
+    </p>
+    <p>
+        @Html.EditorFor(model => model.Name)
+    </p>
+    <p>
+        @Html.LabelFor(model => model.Description)
+    </p>
+    <p>
+        @Html.EditorFor(model => model.Description)
+    </p>
+    <p>
+        @Html.LabelFor(model => model.Cost)
+    </p>
+    <p>
+        @Html.EditorFor(model => model.Cost)
+    </p>
+
+    <input type="submit" value="Submit Product"/>
+}
+
+@Html.ActionLink("Back to Products", "Index")
