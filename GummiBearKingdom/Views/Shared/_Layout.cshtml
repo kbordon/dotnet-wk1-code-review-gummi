@@ -4,9 +4,11 @@
         <link rel="stylesheet" href="/css/master.css">
     </head>
     <body>
-        @Html.Partial("Header")
-        <div class="container">
-            @RenderBody()
+        <div class="page-bg">
+            @Html.Partial("Header")
+            <div class="container">
+                @RenderBody()
+            </div>
         </div>
     </body>
 </html>

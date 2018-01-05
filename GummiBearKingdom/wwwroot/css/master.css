@@ -9,15 +9,16 @@ html, body {
 }
 
 body {
-    background-color: coral;
-    background-image: url('/img/gbk_bg.jpg');
-    background-blend-mode: color-dodge;
+    background:
+        linear-gradient(yellow 0%, pink 90%),
+        url('/img/gbk_bg.jpg');
+    background-blend-mode: overlay;
 }
 
 .header {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 20px;
-    background-color: limegreen;
+    background-color: salmon;
     height: 150px;
     top: 0;
     margin-bottom: 10px;
@@ -39,4 +40,10 @@ body {
 
 .header a:hover{
     color: white;
+}
+
+.container {
+    font-family;    background-color: rgba(255,255,255, 0.8);
+    padding: 10px;
+    margin: 5%;
 }
