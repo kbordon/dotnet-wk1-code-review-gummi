@@ -21,7 +21,7 @@
     {
         <tr>
             <td>
-                <a href='@Url.Action("Index")'>=@Html.DisplayFor(modelItem => listProduct.Name)</a>
+                <a href='@Url.Action("Details", new { id = listProduct.ProductId})'>@Html.DisplayFor(modelItem => listProduct.Name)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => listProduct.Cost)

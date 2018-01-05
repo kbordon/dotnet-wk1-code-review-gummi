@@ -1,0 +1,20 @@
+﻿@model GummiBearKingdom.Models.Product
+
+@{
+    ViewData["Title"] = "Gummi Bear Kingdom : Products - Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Product Details</h2>
+<hr />
+
+<p>@Html.DisplayNameFor(model => model.Name):</p>
+<p>@Html.DisplayFor(model => model.Name)</p>
+
+<p>@Html.DisplayNameFor(model => model.Description):</p>
+<p>@Html.DisplayFor(model => model.Description)</p>
+
+<p>@Html.DisplayNameFor(model => model.Cost):</p>
+<p>@Html.DisplayFor(model => model.Cost)</p>
+
+<p>@Html.ActionLink("Edit", "Edit", new { id = Model.ProductId}) | @Html.ActionLink("Back to Products", "Index")</p>

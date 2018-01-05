@@ -51,10 +51,10 @@ namespace GummiBearKingdom
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Something did not load.");
-            });
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("Something did not load.");
+            //});
         }
     }
 }
