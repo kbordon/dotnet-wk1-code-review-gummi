@@ -1,4 +1,6 @@
-﻿*{
+﻿@import url('https://fonts.googleapis.com/css?family=Josefin+Slab:300i|Lora:700|Pavanam');
+
+*{
     padding: 0;
     margin: 0;
 }
@@ -13,6 +15,15 @@ body {
         linear-gradient(yellow 0%, pink 90%),
         url('/img/gbk_bg.jpg');
     background-blend-mode: overlay;
+    font-family: 'Pavanam', sans-serif;
+}
+
+h1 {
+    font-family: 'Lora', serif
+}
+
+h2, h3, h4 {
+    font-family: 'Josefin Slab', serif
 }
 
 .header {
