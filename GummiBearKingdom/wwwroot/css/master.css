@@ -72,3 +72,23 @@ textarea {
     height: 200px;
     width: 400px;
 }
+
+.container ul {
+    list-style: none;
+}
+
+.container li {
+    margin: 10px;
+    font-size: 20px;
+}
+
+.container a {
+    text-decoration: none;
+    font-weight: bolder;
+    color: lightcoral;
+}
+
+.container a:hover  {
+    text-decoration: underline;
+    color: lightyellow;
+}

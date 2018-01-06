@@ -10,24 +10,15 @@
     @Html.ActionLink("Add Product", "Create")
 </p>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-    </tr>
 
+<ul>
     @foreach (var listProduct in Model)
     {
-        <tr>
-            <td>
-                <a href='@Url.Action("Details", new { id = listProduct.ProductId})'>@Html.DisplayFor(modelItem => listProduct.Name)</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => listProduct.Cost)
-            </td>
-        </tr>
+         <li>
+            <a href='@Url.Action("Details", new { id = listProduct.ProductId})'>@Html.DisplayFor(modelItem => listProduct.Name)</a> @Html.DisplayFor(modelItem => listProduct.Cost)
+        </li>
     }
-</table>
+</ul>
+
 
 <p>@Html.ActionLink("Return Home", "Index", "Home")</p>
