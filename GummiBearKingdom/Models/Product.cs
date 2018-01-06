@@ -10,6 +10,7 @@ namespace GummiBearKingdom.Models
         [Key]
         public int ProductId { get; set; }
         public string Name { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public decimal Cost { get; set; }
     }

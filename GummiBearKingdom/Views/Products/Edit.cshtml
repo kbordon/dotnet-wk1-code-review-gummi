@@ -4,9 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
-<hr/>
-<h4>Edit this: @Html.DisplayFor(model => model.Name)</h4>
+<h2>Product Edit: @Html.DisplayFor(model => model.Name)</h2>
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.ProductId)
