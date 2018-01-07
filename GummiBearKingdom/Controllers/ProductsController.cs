@@ -29,25 +29,26 @@ namespace GummiBearKingdom.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Product product, IFormFile image)
+        public IActionResult Create(Product product)
+        //public IActionResult Create(Product product, IFormFile image)
         {
             //IFormFile image = new IFormFile(Request.Form["Image"]);
-            byte[] newImage = new byte[0];
-            if (image != null)
-            {
-                using (Stream fileStream = image.OpenReadStream())
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    fileStream.CopyTo(ms);
-                    newImage = ms.ToArray();
-                }
-            }
-            else
-            {
-                Debug.WriteLine("***************************************************************************" +
-                                "IMAGE WAS NULL");
-            }
-            product.Image = newImage;
+            //byte[] newImage = new byte[0];
+            //if (image != null)
+            //{
+            //    using (Stream fileStream = image.OpenReadStream())
+            //    using (MemoryStream ms = new MemoryStream())
+            //    {
+            //        fileStream.CopyTo(ms);
+            //        newImage = ms.ToArray();
+            //    }
+            //}
+            //else
+            //{
+            //    Debug.WriteLine("***************************************************************************" +
+            //                    "IMAGE WAS NULL");
+            //}
+            //product.Image = newImage;
             db.Products.Add(product);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -56,8 +57,9 @@ namespace GummiBearKingdom.Controllers
         public IActionResult Details(int id)
         {
             Product thisProduct = db.Products.FirstOrDefault(p => p.ProductId == id);
-            ProductImage thisProductImage = new ProductImage(thisProduct);
-            return View(thisProductImage);
+            //ProductImage thisProductImage = new ProductImage(thisProduct);
+            //return View(thisProductImage);
+            return View(thisProduct); 
         }
 
         public IActionResult Edit(int id)
