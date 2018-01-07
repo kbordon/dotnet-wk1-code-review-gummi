@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GummiBearKingdom.Models;
+using GummiBearKingdom.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -54,8 +55,9 @@ namespace GummiBearKingdom.Controllers
 
         public IActionResult Details(int id)
         {
-            var thisProduct = db.Products.FirstOrDefault(p => p.ProductId == id);
-            return View(thisProduct);
+            Product thisProduct = db.Products.FirstOrDefault(p => p.ProductId == id);
+            ProductImage thisProductImage = new ProductImage(thisProduct);
+            return View(thisProductImage);
         }
 
         public IActionResult Edit(int id)

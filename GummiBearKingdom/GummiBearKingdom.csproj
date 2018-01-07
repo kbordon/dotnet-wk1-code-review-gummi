@@ -13,6 +13,7 @@
     <Folder Include="Views\Products\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="wwwroot\css\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
+    <PackageReference Include="ZKWeb.System.Drawing" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

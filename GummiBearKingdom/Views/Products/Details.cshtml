@@ -1,4 +1,4 @@
-﻿@model GummiBearKingdom.Models.Product
+﻿@model GummiBearKingdom.ViewModels.ProductImage
 
 @{
     ViewData["Title"] = "Gummi Bear Kingdom : Products - Details";
@@ -7,17 +7,22 @@
 
 <h2>Product Details</h2>
 <hr />
+@if(Model.Product.Image != null)
+{
+    <p>
+    @Html.DisplayFor(model => model.Render)
+    </p>
+}
+<p>@Html.DisplayNameFor(model => model.Product.Name):</p>
+<p>@Html.DisplayFor(model => model.Product.Name)</p>
 
-<p>@Html.DisplayNameFor(model => model.Name):</p>
-<p>@Html.DisplayFor(model => model.Name)</p>
+<p>@Html.DisplayNameFor(model => model.Product.Description):</p>
+<p>@Html.DisplayFor(model => model.Product.Description)</p>
 
-<p>@Html.DisplayNameFor(model => model.Description):</p>
-<p>@Html.DisplayFor(model => model.Description)</p>
-
-<p>@Html.DisplayNameFor(model => model.Cost):</p>
-<p>@Html.DisplayFor(model => model.Cost)</p>
+<p>@Html.DisplayNameFor(model => model.Product.Cost):</p>
+<p>@Html.DisplayFor(model => model.Product.Cost)</p>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId}) | 
-    @Html.ActionLink("Delete", "Delete", new { id = Model.ProductId}) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Product.ProductId}) | 
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Product.ProductId}) |
     @Html.ActionLink("Back to Products", "Index")</p>
