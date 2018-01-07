@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GummiBearKingdom.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,8 +28,25 @@ namespace GummiBearKingdom.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Product product)
+        public IActionResult Create(Product product, IFormFile image)
         {
+            //IFormFile image = new IFormFile(Request.Form["Image"]);
+            byte[] newImage = new byte[0];
+            if (image != null)
+            {
+                using (Stream fileStream = image.OpenReadStream())
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fileStream.CopyTo(ms);
+                    newImage = ms.ToArray();
+                }
+            }
+            else
+            {
+                Debug.WriteLine("***************************************************************************" +
+                                "IMAGE WAS NULL");
+            }
+            product.Image = newImage;
             db.Products.Add(product);
             db.SaveChanges();
             return RedirectToAction("Index");

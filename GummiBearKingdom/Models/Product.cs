@@ -13,5 +13,6 @@ namespace GummiBearKingdom.Models
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public decimal Cost { get; set; }
+        public byte[] Image { get; set; }
     }
 }
