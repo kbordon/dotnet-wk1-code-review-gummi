@@ -19,13 +19,13 @@
         @Html.LabelFor(model => model.Description)
     </p>
     <p>
-        @Html.EditorFor(model => model.Description)
+        @Html.TextBoxFor(model => model.Description)
     </p>
     <p>
         @Html.LabelFor(model => model.Cost)
     </p>
     <p>
-        @Html.EditorFor(model => model.Cost)
+        @Html.TextBoxFor(model => model.Cost, new { type = "number"})
     </p>
 
     <p>

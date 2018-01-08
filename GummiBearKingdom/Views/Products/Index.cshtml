@@ -11,14 +11,13 @@
 </p>
 
 
-<ul>
+<div class="products">
     @foreach (var listProduct in Model)
     {
-         <li>
+         <p>
             <a href='@Url.Action("Details", new { id = listProduct.ProductId})'>@Html.DisplayFor(modelItem => listProduct.Name)</a> @Html.DisplayFor(modelItem => listProduct.Cost)
-        </li>
-    }
-</ul>
-
+        </p>
+    } 
+</div> 
 
 <p>@Html.ActionLink("Return Home", "Index", "Home")</p>

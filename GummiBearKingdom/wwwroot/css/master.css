@@ -97,3 +97,13 @@ textarea {
     text-decoration: underline;
     color: lightyellow;
 }
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 30px;
+}
+
+.products p {
+    margin: 5px;
+}
