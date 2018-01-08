@@ -10,13 +10,13 @@
 @if(Model.Image != null)
  {
     <p>
-        <img src='@Url.Action("GetImage", "Images", new { id = Model.ProductId})'/>
+        <img src='@Url.Action("GetImage", "Products", new { id = Model.ProductId})'/>
     </p>
  }
 else
  {
     <p>
-        No Image Available
+        No Image Available.
     </p>
  }
 

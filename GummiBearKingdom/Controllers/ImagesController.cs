@@ -14,7 +14,7 @@ namespace GummiBearKingdom.Controllers
         public ActionResult GetImage(int id)
         {
             var thisImage = db.Products.FirstOrDefault(p => p.ProductId == id).Image;
-            return File(thisImage, "image/png");
+            return File(thisImage, "image/*");
         }
     }
 }
