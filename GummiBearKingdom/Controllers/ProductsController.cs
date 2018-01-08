@@ -29,26 +29,26 @@ namespace GummiBearKingdom.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Product product)
-        //public IActionResult Create(Product product, IFormFile image)
+        //public IActionResult Create(Product product)
+        public IActionResult Create(Product product, IFormFile image)
         {
             //IFormFile image = new IFormFile(Request.Form["Image"]);
-            //byte[] newImage = new byte[0];
-            //if (image != null)
-            //{
-            //    using (Stream fileStream = image.OpenReadStream())
-            //    using (MemoryStream ms = new MemoryStream())
-            //    {
-            //        fileStream.CopyTo(ms);
-            //        newImage = ms.ToArray();
-            //    }
-            //}
-            //else
-            //{
-            //    Debug.WriteLine("***************************************************************************" +
-            //                    "IMAGE WAS NULL");
-            //}
-            //product.Image = newImage;
+            byte[] newImage = new byte[0];
+            if (image != null)
+            {
+                using (Stream fileStream = image.OpenReadStream())
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fileStream.CopyTo(ms);
+                    newImage = ms.ToArray();
+                }
+                product.Image = newImage;
+            }
+            else
+            {
+                Debug.WriteLine("***************************************************************************" +
+                                "IMAGE WAS NULL");
+            }
             db.Products.Add(product);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -89,6 +89,12 @@ namespace GummiBearKingdom.Controllers
             db.Products.Remove(thisProduct);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult GetImage(int id)
+        {
+            var thisImage = db.Products.FirstOrDefault(p => p.ProductId == id).Image;
+            return File(thisImage, "image/png");
         }
     }
 }
