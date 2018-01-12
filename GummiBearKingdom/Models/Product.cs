@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -32,6 +33,11 @@ namespace GummiBearKingdom.Models
         public override int GetHashCode()
         {
             return this.ProductId.GetHashCode();
+        }
+
+        public decimal DisplayCost()
+        {
+            return Math.Round(Cost, 2, MidpointRounding.AwayFromZero);
         }
     }
 
