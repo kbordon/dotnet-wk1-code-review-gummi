@@ -12,9 +12,9 @@ namespace GummiBearKingdom.Models
         public int ReviewId { get; set; }
         public string Author { get; set; }
         public string ContentBody { get; set; }
-        public decimal Rating { get; set; }
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
+        public int Rating = 0;
 
         public override bool Equals(System.Object otherReview)
         {
@@ -34,11 +34,16 @@ namespace GummiBearKingdom.Models
             return this.ReviewId.GetHashCode();
         }
 
-        public void SetRating(int rating)
+        //Call before saving review to database to validate rating.
+        public void CheckRating()
         {
-            if(rating <= 1 && rating >= 5)
+            if (Rating > 5)
             {
-                Rating = rating;
+                Rating = 5;
+            }
+            else if (Rating < 1)
+            {
+                Rating = 1;
             }
         }
     }
