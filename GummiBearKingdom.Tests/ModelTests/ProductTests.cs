@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GummiBearKingdom.Models;
 using System.IO;
 using System;
+using System.Collections.Generic;
 
 namespace GummiBearKingdom.Tests
 {
@@ -91,6 +92,24 @@ namespace GummiBearKingdom.Tests
 
             //Assert
             Assert.AreEqual("10.00", product.Cost.ToString());
+        }
+
+        [TestMethod]
+        public void GetRating_ReturnsAverageRatingOfProduct_Double()
+        {
+            //Arrange
+            var product = new Product();
+            var review1 = new Review { Rating = 2 };
+            var review2 = new Review { Rating = 4 };
+            var review3 = new Review { Rating = 5 };
+            product.Reviews = new List<Review>{review1, review2, review3};
+
+            //Act
+            double result = product.GetRating();
+
+            //Assert
+            Assert.AreEqual(3.7, result);
+
         }
 
     }

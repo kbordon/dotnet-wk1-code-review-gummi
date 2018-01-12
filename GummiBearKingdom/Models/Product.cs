@@ -57,6 +57,20 @@ namespace GummiBearKingdom.Models
                 Cost = newCost;
             }
         }
+
+        public double GetRating()
+        {         
+			double avgRating = 0.0;
+            if (Reviews.Count > 0)
+            {
+                foreach(Review review in Reviews)
+                {
+                    avgRating += review.Rating;
+                }
+				avgRating = Math.Round(avgRating / Reviews.Count, 1);  
+            }
+            return avgRating;
+        }
     }
 
 }
