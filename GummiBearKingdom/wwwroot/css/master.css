@@ -1,4 +1,6 @@
-﻿@import url('https://fonts.googleapis.com/css?family=Josefin+Slab:300i|Lora:700|Pavanam');
+﻿/*@import url('https://fonts.googleapis.com/css?family=Josefin+Slab:300i|Lora:700|Pavanam');*/
+
+@import url('https://fonts.googleapis.com/css?family=Concert+One|Didact+Gothic|Fredoka+One');
 
 *{
     padding: 0;
@@ -20,19 +22,24 @@ body {
         linear-gradient(purple 0%, red 90%), 
         url('/img/gbk_bg.jpg');
     background-blend-mode: screen;
-    font-family: 'Pavanam', sans-serif
+    /*font-family: 'Pavanam', sans-serif*/
+    font-family: 'Didact Gothic', serif;
+
 }
 
 h1 {
-    font-family: 'Lora', serif
+    /*font-family: 'Lora', serif*/
+    font-family: 'Fredoka One', serif;
+
 }
 
 h2, h3, h4 {
-    font-family: 'Josefin Slab', serif
+    /*font-family: 'Josefin Slab', serif*/;
+    font-family: 'Fredoka One', serif
 }
 
 .header {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Didact Gothic', serif;
     font-size: 20px;
     background-color: #ffeb3b;
     height: 100px;
