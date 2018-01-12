@@ -40,7 +40,7 @@ namespace GummiBearKingdom.Tests
         }
 
         [TestMethod]
-        public void ProductsController_IndexModelContainsCorrectData_List()
+        public void Mock_IndexModelContainsCorrectData_List()
         {
             //Arrange
             DbSetup();
@@ -49,6 +49,18 @@ namespace GummiBearKingdom.Tests
             var result = controller.Index();
 
             Assert.IsInstanceOfType(result, typeof(ActionResult));
+        }
+
+        [TestMethod]
+        public void Mock_IndexContainsModelData_List()
+        {
+            DbSetup();
+            ViewResult indexView = new ProductsController(mock.Object).Index() as ViewResult;
+
+            var result = indexView.ViewData.Model;
+
+            Assert.IsInstanceOfType(result,typeof(List<Product>));
+
         }
 
     }
