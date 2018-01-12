@@ -39,13 +39,16 @@ namespace GummiBearKingdom.Models
         public void CheckCost()
         {
             string[] numbersAfterDecimal = Cost.ToString().Split('.');
-            if (numbersAfterDecimal[1].Length > 2 )
+            if (numbersAfterDecimal.Length > 1)
             {
-                string newCostStr = Cost.ToString("N2");
-                Debug.WriteLine(newCostStr);
-                decimal newCost = Convert.ToDecimal(newCostStr);
-				Cost = newCost;
-            };
+                if (numbersAfterDecimal[1].Length > 2)
+                {
+                    numbersAfterDecimal[1] = numbersAfterDecimal[1].Remove(2);
+                    string newCostStr = String.Join(".", numbersAfterDecimal);
+                    decimal newCost = Convert.ToDecimal(newCostStr);
+                    Cost = newCost;
+                };  
+            }
         }
     }
 
