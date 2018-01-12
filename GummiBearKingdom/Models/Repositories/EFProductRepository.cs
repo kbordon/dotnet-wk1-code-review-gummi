@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace GummiBearKingdom.Models.Repositories
+namespace GummiBearKingdom.Models
 {
-    public class EFProductRepository
+    public class EFProductRepository : IProductRepository
     {
         GummiBearKingdomDbContext db;
 
@@ -30,7 +30,7 @@ namespace GummiBearKingdom.Models.Repositories
         // save product
         public Product Save(Product product)
         {
-            db.Products.Add(boss);
+            db.Products.Add(product);
             db.SaveChanges();
             return product;
         }

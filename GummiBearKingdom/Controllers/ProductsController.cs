@@ -14,13 +14,25 @@ namespace GummiBearKingdom.Controllers
 {
     public class ProductsController : Controller
     {
-        // instantiate database context model
-        private GummiBearKingdomDbContext db = new GummiBearKingdomDbContext();
+        // instantiate interface
+        private IProductRepository productRepo;
 
-        public IActionResult Index()
+        // constructor can be provided test repo or use production one
+        public ProductsController(IProductRepository repo = null)
         {
-            List<Product> model = db.Products.ToList();
-            return View(model);
+            if(repo == null)
+            {
+                this.productRepo = new EFProductRepository();
+            }
+            else
+            {
+                this.productRepo = repo;
+            }
+        }
+
+        public ViewResult Index()
+        {
+            return View(productRepo.Products.ToList());
         }
 
         public IActionResult Create()
@@ -29,10 +41,8 @@ namespace GummiBearKingdom.Controllers
         }
 
         [HttpPost]
-        //public IActionResult Create(Product product)
         public IActionResult Create(Product product, IFormFile image)
         {
-            //IFormFile image = new IFormFile(Request.Form["Image"]);
             byte[] newImage = new byte[0];
             if (image != null)
             {
@@ -44,56 +54,48 @@ namespace GummiBearKingdom.Controllers
                 }
                 product.Image = newImage;
             }
-            else
-            {
-                Debug.WriteLine("***************************************************************************" +
-                                "IMAGE WAS NULL");
-            }
-            db.Products.Add(product);
-            db.SaveChanges();
+            product.CheckCost();
+            productRepo.Save(product);
             return RedirectToAction("Index");
         }
 
         public IActionResult Details(int id)
         {
-            Product thisProduct = db.Products.FirstOrDefault(p => p.ProductId == id);
-            //ProductImage thisProductImage = new ProductImage(thisProduct);
-            //return View(thisProductImage);
+            Product thisProduct = productRepo.Products.Include(p => p.Reviews).FirstOrDefault(p => p.ProductId == id);
             return View(thisProduct); 
         }
 
         public IActionResult Edit(int id)
         {
-            var thisProduct = db.Products.FirstOrDefault(products => products.ProductId == id);
+            var thisProduct = productRepo.Products.FirstOrDefault(p => products.p == id);
             return View(thisProduct);
         }
 
         [HttpPost]
         public IActionResult Edit(Product product)
         {
-            db.Entry(product).State = EntityState.Modified;
-            db.SaveChanges();
+            productRepo.Edit(product);
             return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int id)
         {
-            Product thisProduct = db.Products.FirstOrDefault(products => products.ProductId == id);
+            Product thisProduct = productRepo.Products.FirstOrDefault(p => p.ProductId == id);
             return View(thisProduct);
         }
 
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            Product thisProduct = db.Products.FirstOrDefault(products => products.ProductId == id);
-            db.Products.Remove(thisProduct);
-            db.SaveChanges();
+            Product thisProduct = productRepo.Products.FirstOrDefault(p => p.ProductId == id);
+            productRepo.Remove(thisProduct);
             return RedirectToAction("Index");
         }
 
+        // Get a product's image
         public ActionResult GetImage(int id)
         {
-            var thisImage = db.Products.FirstOrDefault(p => p.ProductId == id).Image;
+            var thisImage = productRepo.Products.FirstOrDefault(p => p.ProductId == id).Image;
             return File(thisImage, "image/png");
         }
     }
