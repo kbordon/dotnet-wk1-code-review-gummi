@@ -49,6 +49,12 @@ namespace GummiBearKingdom.Models
                     Cost = newCost;
                 };  
             }
+            else
+            {
+                string newCostStr = Cost.ToString() + ".00";
+                decimal newCost = Convert.ToDecimal(newCostStr);
+                Cost = newCost;
+            }
         }
     }
 
