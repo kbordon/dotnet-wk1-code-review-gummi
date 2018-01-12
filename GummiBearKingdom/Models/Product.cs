@@ -14,6 +14,7 @@ namespace GummiBearKingdom.Models
         public string Description { get; set; }
         public decimal Cost { get; set; }
         public byte[] Image { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
 
         public override bool Equals(System.Object otherProduct)
         {
