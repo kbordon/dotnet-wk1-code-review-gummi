@@ -67,7 +67,7 @@ namespace GummiBearKingdom.Controllers
 
         public IActionResult Edit(int id)
         {
-            var thisProduct = productRepo.Products.FirstOrDefault(p => products.p == id);
+            var thisProduct = productRepo.Products.FirstOrDefault(p => p.ProductId == id);
             return View(thisProduct);
         }
 

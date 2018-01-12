@@ -32,6 +32,32 @@ namespace GummiBearKingdom.Migrations
 
                     b.ToTable("products");
                 });
+
+            modelBuilder.Entity("GummiBearKingdom.Models.Review", b =>
+                {
+                    b.Property<int>("ReviewId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Author");
+
+                    b.Property<string>("ContentBody");
+
+                    b.Property<int>("ProductId");
+
+                    b.HasKey("ReviewId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("reviews");
+                });
+
+            modelBuilder.Entity("GummiBearKingdom.Models.Review", b =>
+                {
+                    b.HasOne("GummiBearKingdom.Models.Product", "Product")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
         }
     }
 }
