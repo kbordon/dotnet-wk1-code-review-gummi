@@ -36,6 +36,7 @@ namespace GummiBearKingdom.Models
             return this.ProductId.GetHashCode();
         }
 
+        //Run before saving to database to validate cost input.
         public void CheckCost()
         {
             string[] numbersAfterDecimal = Cost.ToString().Split('.');
