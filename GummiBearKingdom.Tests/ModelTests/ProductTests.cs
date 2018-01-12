@@ -63,5 +63,19 @@ namespace GummiBearKingdom.Tests
             CollectionAssert.AreEqual(array, product.Image);
         }
 
+        [TestMethod]
+        public void CheckCost_ReturnsCostRoundedToTwoPlacesForDisplay_Decimal()
+        {
+            //Arrange
+            var product = new Product();
+            product.Cost = 10.999m;
+
+            //Act
+            product.CheckCost();
+
+            //Assert
+            Assert.AreEqual(10.99m, product.Cost);
+        }
+
     }
 }

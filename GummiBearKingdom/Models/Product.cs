@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 
 namespace GummiBearKingdom.Models
 {
@@ -35,9 +36,16 @@ namespace GummiBearKingdom.Models
             return this.ProductId.GetHashCode();
         }
 
-        public decimal DisplayCost()
+        public void CheckCost()
         {
-            return Math.Round(Cost, 2, MidpointRounding.AwayFromZero);
+            string[] numbersAfterDecimal = Cost.ToString().Split('.');
+            if (numbersAfterDecimal[1].Length > 2 )
+            {
+                string newCostStr = Cost.ToString("N2");
+                Debug.WriteLine(newCostStr);
+                decimal newCost = Convert.ToDecimal(newCostStr);
+				Cost = newCost;
+            };
         }
     }
 
