@@ -18,7 +18,7 @@ namespace GummiBearKingdom.Models
 
         public override bool Equals(System.Object otherReview)
         {
-            if(!(otherReview is Review))
+            if (!(otherReview is Review))
             {
                 return false;
             }
@@ -44,6 +44,19 @@ namespace GummiBearKingdom.Models
             else if (Rating < 1)
             {
                 Rating = 1;
+            }
+        }
+
+        //Call before saving review to database to validate number of characters in ContentBody.
+        public bool IsContentCharCountValid()
+        {
+            if (ContentBody.Length > 255)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

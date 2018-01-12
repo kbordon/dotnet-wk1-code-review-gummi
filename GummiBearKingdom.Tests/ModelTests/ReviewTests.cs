@@ -81,5 +81,21 @@ namespace GummiBearKingdom.Tests
             Assert.AreEqual(5, review.Rating);
             Assert.AreEqual(1, review2.Rating);
         }
+
+        [TestMethod]
+        public void IsContentCharCountValid_ChecksBodyContentCharacterCountUnder55_False()
+        {
+            //Arrange
+            var review = new Review
+            {
+                ContentBody = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,."
+            };
+
+            //Act
+            bool result = review.IsContentCharCountValid();
+
+            //Assert
+            Assert.AreEqual(false, result);
+        }
     }
 }
