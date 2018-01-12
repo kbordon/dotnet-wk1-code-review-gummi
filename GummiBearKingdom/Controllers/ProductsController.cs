@@ -30,7 +30,7 @@ namespace GummiBearKingdom.Controllers
             }
         }
 
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View(productRepo.Products.ToList());
         }

@@ -40,7 +40,7 @@ namespace GummiBearKingdom.Tests
         }
 
         [TestMethod]
-        public void Mock_IndexModelContainsCorrectData_List()
+        public void Mock_GetActionResultIndex_ActionResult()
         {
             //Arrange
             DbSetup();
@@ -48,7 +48,7 @@ namespace GummiBearKingdom.Tests
 
             var result = controller.Index();
 
-            Assert.IsInstanceOfType(result, typeof(ActionResult));
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ namespace GummiBearKingdom.Tests
         }
 
         [TestMethod]
-        public void Mock_PostViewResultCreate_ViewResult()
+        public void Mock_PostViewResultCreate_RedirectToActionResult()
         {
             DbSetup();
             Product testProduct = new Product
@@ -102,5 +102,25 @@ namespace GummiBearKingdom.Tests
             Assert.IsInstanceOfType(resultRedirect, typeof(RedirectToActionResult));
         }
 
+        [TestMethod]
+        public void Mock_GetDetails_ReturnsView()
+        {
+            DbSetup();
+            Product testProduct = new Product
+            {
+                ProductId = 1,
+                Name = "Gummi Crown",
+                Description = "A Gummi headdress worthy of royalty.",
+                Cost = 9999.99m,
+                Image = null
+            };
+            ProductsController controller = new ProductsController(mock.Object);
+
+            var resultView = controller.Details(testProduct.ProductId) as ViewResult;
+            var model = resultView.ViewData.Model as Product;
+
+            Assert.IsInstanceOfType(resultView, typeof(ViewResult));
+            Assert.IsInstanceOfType(model, typeof(Product));
+        }
     }
 }
