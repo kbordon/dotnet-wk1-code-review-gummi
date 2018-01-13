@@ -11,9 +11,15 @@ using Moq;
 namespace GummiBearKingdom.Tests
 {
     [TestClass]
-    public class ProductsControllerTests
+    public class ProductsControllerTests : IDisposable
     {
         Mock<IProductRepository> mock = new Mock<IProductRepository>();
+        EFProductRepository db = new EFProductRepository(new TestDbContext());
+        public void Dispose()
+        {
+            db.DeleteAll();
+        }
+
         private void DbSetup()
         {
             mock.Setup(m => m.Products).Returns(new Product[]
@@ -31,7 +37,7 @@ namespace GummiBearKingdom.Tests
                     Cost = 299.99m,
                     Image = null },
                 new Product {
-                    ProductId = 1,
+                    ProductId = 3,
                     Name = "Gummi Dignity",
                     Description = "Dignity is hard to preserve sometimes, but when it's gummi maybe it's more resilent and tasty.",
                     Cost = 19.99m,
@@ -121,6 +127,50 @@ namespace GummiBearKingdom.Tests
 
             Assert.IsInstanceOfType(resultView, typeof(ViewResult));
             Assert.IsInstanceOfType(model, typeof(Product));
+        }
+
+        [TestMethod]
+        public void DB_CreatesNewEntries_Collection()
+        {
+            ProductsController controller = new ProductsController(db);
+            Product testProduct = new Product
+            {
+                Name = "Gummi Couch",
+                Description = "Maybe not practical, but definitely possible.",
+                Cost = 299.99m
+            };
+
+            controller.Create(testProduct, null);
+            var collection = (controller.Index() as ViewResult).ViewData.Model as List<Product>;
+
+            CollectionAssert.Contains(collection, testProduct);
+
+
+        }
+
+        [TestMethod]
+        public void DB_DeletesSpecificEntry_Collection()
+        {
+            ProductsController controller = new ProductsController(db);
+            Product testProduct = new Product
+                                {
+                                    Name = "Gummi Couch",
+                                    Description = "Maybe not practical, but definitely possible.",
+                                    Cost = 299.99m
+                                };
+            Product testProduct2 = new Product
+                                {
+                                    Name = "Gummi Dignity",
+                                    Description = "Dignity is hard to preserve sometimes, but when it's gummi maybe it's more resilent and tasty.",
+                                    Cost = 19.99m
+                                };
+            controller.Create(testProduct, null);
+            controller.Create(testProduct2, null);
+            var collection = (controller.Index() as ViewResult).ViewData.Model as List<Product>;
+            controller.DeleteConfirmed(collection[0].ProductId);
+            var collection2 = (controller.Index() as ViewResult).ViewData.Model as List<Product>;
+
+            CollectionAssert.DoesNotContain(collection2, testProduct);
         }
     }
 }
