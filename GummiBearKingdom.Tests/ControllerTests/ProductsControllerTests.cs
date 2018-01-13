@@ -172,5 +172,26 @@ namespace GummiBearKingdom.Tests
 
             CollectionAssert.DoesNotContain(collection2, testProduct);
         }
+
+        [TestMethod]
+        public void DB_EditSpecificEntry_Product()
+        {
+            ProductsController controller = new ProductsController();
+            Product testProduct = new Product
+            {
+                Name = "Gummi Couch",
+                Description = "Maybe not practical, but definitely possible.",
+                Cost = 299.99m
+            };
+
+            controller.Create(testProduct, null);
+            var collection = (controller.Index() as ViewResult).ViewData.Model as List<Product>;
+            Product productToEdit = (controller.Edit(collection[0].ProductId) as ViewResult).ViewData.Model as Product;
+            productToEdit.Description = "You'll never lose your change now.";
+            controller.Edit(productToEdit);
+            var collection2 = (controller.Index() as ViewResult).ViewData.Model as List<Product>;
+
+            Assert.AreNotEqual(testProduct.Description, collection2[0].Description);
+        }
     }
 }
