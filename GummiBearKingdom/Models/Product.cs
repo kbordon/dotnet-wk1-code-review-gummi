@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace GummiBearKingdom.Models
 {
@@ -71,6 +73,25 @@ namespace GummiBearKingdom.Models
             }
             return avgRating;
         }
+
+        // refactor this or find better implementation for this method.
+        public static List<Product> GetTopThree()
+        {
+            EFProductRepository proRepo = new EFProductRepository(new TestDbContext());
+            List<Product> topProducts = new List<Product>();
+            var orderedProducts = proRepo.Products.Include(p => p.Reviews).ToList().OrderByDescending(p => p.Reviews.Count);
+            int numTopProducts = 3;
+            if (orderedProducts.Count() < 3)
+            {
+                numTopProducts = orderedProducts.Count();
+            }
+            for (int i = 0; i < numTopProducts; i++)
+            {
+                topProducts.Add(orderedProducts.ElementAt(i));
+            }
+            return topProducts;
+        }
+
     }
 
 }

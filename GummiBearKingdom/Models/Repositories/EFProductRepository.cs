@@ -55,5 +55,6 @@ namespace GummiBearKingdom.Models
         {
             db.Database.ExecuteSqlCommand("delete from products");
         }
+
     }
 }

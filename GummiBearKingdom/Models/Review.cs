@@ -14,7 +14,7 @@ namespace GummiBearKingdom.Models
         public string ContentBody { get; set; }
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
-        public int Rating = 0;
+        public int Rating { get; set; }
 
         public override bool Equals(System.Object otherReview)
         {

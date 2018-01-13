@@ -32,7 +32,8 @@ namespace GummiBearKingdom.Controllers
 
         public ActionResult Index()
         {
-            return View(productRepo.Products.ToList());
+            return View(Product.GetTopThree());
+            //return View(productRepo.Products.ToList());
         }
 
         public IActionResult Create()
@@ -98,5 +99,6 @@ namespace GummiBearKingdom.Controllers
             var thisImage = productRepo.Products.FirstOrDefault(p => p.ProductId == id).Image;
             return File(thisImage, "image/png");
         }
+
     }
 }
