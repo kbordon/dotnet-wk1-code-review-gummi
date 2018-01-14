@@ -32,11 +32,11 @@ namespace GummiBearKingdom.Controllers
 
         // allow several images to be added at some point
         [HttpPost]
-        public IActionResult Create(Review review)
+        public IActionResult Create(ProductReview thisPR)
         {
             
-            reviewRepo.Save(review);
-            return RedirectToAction("Details", "Products", new { id = review.ProductId});
+            reviewRepo.Save(thisPR.Review);
+            return RedirectToAction("Details", "Products", new { id = thisPR.Review.ProductId});
         }
 
         //[HttpGet("/Products/{productId}/Reviews")]

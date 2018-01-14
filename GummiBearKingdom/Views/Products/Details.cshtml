@@ -48,12 +48,17 @@ else
             <p>
                 @Html.TextBoxFor(model => m.Review.Author)
             </p>
-
             <p>
-                @Html.LabelFor(model => model.Description)
+                @Html.LabelFor(m => m.Review.ContentBody):
             </p>
             <p>
-                @Html.TextBoxFor(model => model.Description)
+                @Html.TextBoxFor(model => m.Review.ContentBody)
+            </p>
+            <p>
+                @Html.LabelFor(m => m.Review.Rating):
+            </p>
+            <p>
+                @Html.TextBoxFor(model => m.Review.Rating)
             </p>
             
             <input type="submit"/> 

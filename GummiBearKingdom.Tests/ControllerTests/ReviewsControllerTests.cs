@@ -6,6 +6,7 @@ using System.Linq;
 using GummiBearKingdom.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using GummiBearKingdom.ViewModels;
 
 namespace GummiBearKingdom.Tests
 {
@@ -50,6 +51,7 @@ namespace GummiBearKingdom.Tests
         public void Mock_PostViewResultCreate_RedirectToActionResult()
         {
             DbSetup();
+            ProductReview testPR = new ProductReview();
             Review testReview = new Review
             {
                 ReviewId = 4,
@@ -58,8 +60,9 @@ namespace GummiBearKingdom.Tests
                 ProductId = 1,
                 Rating = 4
             };
+            testPR.Review = testReview;
             ReviewsController controller = new ReviewsController(mock.Object);
-            var resultRedirect = controller.Create(testReview) as RedirectToActionResult;
+            var resultRedirect = controller.Create(testPR) as RedirectToActionResult;
             object prodId = new {};
             resultRedirect.RouteValues.TryGetValue("id", out prodId);
 
