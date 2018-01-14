@@ -27,10 +27,19 @@ else
 <p>@Html.DisplayFor(model => model.Product.Description)</p>
 
 <p>@Html.DisplayNameFor(model => model.Product.Cost):</p>
-<p>$@Html.DisplayFor(model => model.Product.Cost)</p>
+<p>@Html.DisplayFor(model => model.Product.Cost)</p>
 
 <p>Average Rating:</p>
 <p>@Model.Product.GetRating()</p> 
+@for(var i = 0; i < Math.Floor(Model.Product.GetRating()); i++)
+{
+    <strong>★</strong>
+}
+@if(Math.Floor(Model.Product.GetRating()) < Model.Product.GetRating())
+{
+    <strong>★</strong>
+
+}
  
 <p>
     @Html.ActionLink("Reviews", "GetAll", "Reviews", new { id = Model.Product.ProductId}) |  
