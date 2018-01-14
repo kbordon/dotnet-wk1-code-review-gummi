@@ -34,9 +34,17 @@ namespace GummiBearKingdom.Controllers
         [HttpPost]
         public IActionResult Create(ProductReview thisPR)
         {
-            
-            reviewRepo.Save(thisPR.Review);
-            return RedirectToAction("Details", "Products", new { id = thisPR.Review.ProductId});
+            if (thisPR.Review.IsContentCharCountValid())
+            {
+                thisPR.Review.CheckRating();
+				reviewRepo.Save(thisPR.Review);
+                return RedirectToAction("Details", "Products", new { id = thisPR.Review.ProductId});
+            }
+            else
+            {
+                // do something with text validation? maybe overload details method.
+                return RedirectToAction("Details", "Products", new { id = thisPR.Review.ProductId, invalidReview = true });
+            }
         }
 
         //[HttpGet("/Products/{productId}/Reviews")]

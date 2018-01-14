@@ -7,6 +7,7 @@ namespace GummiBearKingdom.ViewModels
     {
         public Product Product { get; set; }
         public Review Review { get; set; }
+        public bool ReviewFail { get; set; } = false;
 
         public ProductReview()
         {

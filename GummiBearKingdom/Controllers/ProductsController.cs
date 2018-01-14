@@ -60,13 +60,17 @@ namespace GummiBearKingdom.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, bool invalidReview = false)
         {
             Product thisProduct = productRepo.Products.Include(p => p.Reviews).FirstOrDefault(p => p.ProductId == id);
-            ProductReview thisProductReview = new ProductReview();
-            thisProductReview.Product = thisProduct;
-            thisProductReview.Review.ProductId = id;
-            return View(thisProductReview); 
+            ProductReview thisPR = new ProductReview();
+            thisPR.Product = thisProduct;
+            thisPR.Review.ProductId = id;
+            if (invalidReview)
+            {
+                thisPR.ReviewFail = invalidReview;
+            }
+            return View(thisPR); 
         }
 
         public IActionResult Edit(int id)

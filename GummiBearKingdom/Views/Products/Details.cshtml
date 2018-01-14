@@ -36,8 +36,21 @@ else
     @Html.ActionLink("Back to Products", "Index")
 </p>
 
+<div class="details-reviews">
+    @foreach(var review in Model.Product.Reviews)
+    {
+        <h4>@review.Author</h4>
+        <p>@review.Rating</p>
+        <p>@review.ContentBody</p>
+    }
+</div>
+
 <div class="modal-review">
     <div class="form">
+        @if(Model.ReviewFail)
+        {
+            <h3>Your review is too long. Please limit to 255 characters.</h3>
+        }
         @using (Html.BeginForm("Create", "Reviews", FormMethod.Post))
         {
             @Html.HiddenFor(m => m.Review.ProductId)
@@ -46,19 +59,19 @@ else
                 @Html.LabelFor(m => m.Review.Author):
             </p>
             <p>
-                @Html.TextBoxFor(model => m.Review.Author)
+                @Html.TextBoxFor(m => m.Review.Author)
             </p>
             <p>
                 @Html.LabelFor(m => m.Review.ContentBody):
             </p>
             <p>
-                @Html.TextBoxFor(model => m.Review.ContentBody)
+                @Html.TextBoxFor(m => m.Review.ContentBody)
             </p>
             <p>
                 @Html.LabelFor(m => m.Review.Rating):
             </p>
             <p>
-                @Html.TextBoxFor(model => m.Review.Rating)
+                @Html.TextBoxFor(m => m.Review.Rating)
             </p>
             
             <input type="submit"/> 
