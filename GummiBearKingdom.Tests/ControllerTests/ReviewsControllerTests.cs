@@ -5,6 +5,7 @@ using Moq;
 using System.Linq;
 using GummiBearKingdom.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace GummiBearKingdom.Tests
 {
@@ -65,6 +66,16 @@ namespace GummiBearKingdom.Tests
             Assert.IsInstanceOfType(resultRedirect, typeof(RedirectToActionResult));
 			Assert.AreEqual("Products", resultRedirect.ControllerName);
             Assert.AreEqual(1, prodId);
+        }
+
+        [TestMethod]
+        public void Mock_GetAllContainsModelData_List()
+        {
+            DbSetup();
+            ViewResult getAllView = new ReviewsController(mock.Object).GetAll(1) as ViewResult;
+
+            var result = getAllView.ViewData.Model;
+            Assert.IsInstanceOfType(result, typeof(List<Product>));
         }
     }
 }

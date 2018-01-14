@@ -39,5 +39,12 @@ namespace GummiBearKingdom.Controllers
             return RedirectToAction("Details", "Products", new { id = review.ProductId});
         }
 
+        //[HttpGet("/Products/{productId}/Reviews")]
+        public IActionResult GetAll(int productId)
+        {
+            var productReviews = reviewRepo.Reviews.Where(r => r.ProductId == productId).ToList();
+            return View("Reviews", productReviews);
+        }
+
     }
 }

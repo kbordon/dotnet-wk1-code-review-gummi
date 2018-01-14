@@ -15,6 +15,7 @@
     <Folder Include="wwwroot\css\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Models\Repositories\" />
+    <Folder Include="Views\Reviews\" />
   </ItemGroup>
 
   <ItemGroup>

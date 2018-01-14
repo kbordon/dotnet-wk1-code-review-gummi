@@ -28,8 +28,10 @@ else
 
 <p>@Html.DisplayNameFor(model => model.Cost):</p>
 <p>@Html.DisplayFor(model => model.Cost)</p>
-
+ 
 <p>
+    @Html.ActionLink("Reviews", "GetAll", "Reviews", new { id = Model.ProductId}) |  
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId}) | 
     @Html.ActionLink("Delete", "Delete", new { id = Model.ProductId}) |
-    @Html.ActionLink("Back to Products", "Index")</p>
+    @Html.ActionLink("Back to Products", "Index")
+</p>

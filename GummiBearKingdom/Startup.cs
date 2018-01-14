@@ -47,6 +47,15 @@ namespace GummiBearKingdom
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "Reviews",
+                    template: "Products/{id}/Reviews/",
+                    defaults: new
+                    {
+                        controller = "Reviews",
+                        action = "GetAll"
+                    }
+                );
+                routes.MapRoute(
                         name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
