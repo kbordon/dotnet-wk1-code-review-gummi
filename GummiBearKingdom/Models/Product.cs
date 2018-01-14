@@ -75,22 +75,41 @@ namespace GummiBearKingdom.Models
         }
 
         // refactor this or find better implementation for this method.
-        public static List<Product> GetTopThree()
+        //public static List<Product> GetTopThree()
+        //{
+        //    EFProductRepository proRepo = new EFProductRepository(new TestDbContext());
+        //    List<Product> topProducts = new List<Product>();
+        //    //var orderedProducts = proRepo.Products.Include(p => p.Reviews).OrderByDescending(p => p.Reviews.Count).ToList();
+        //    var orderedProducts = proRepo.Products.Include(p => p.Reviews).ToList().OrderByDescending(p => p.Reviews.Count);
+        //    int numTopProducts = 3;
+        //    if (orderedProducts.Count() < 3)
+        //    {
+        //        numTopProducts = orderedProducts.Count();
+        //    }
+        //    for (int i = 0; i < numTopProducts; i++)
+        //    {
+        //        topProducts.Add(orderedProducts.ElementAt(i));
+        //    }
+        //    return topProducts;
+        //}
+
+        public static List<Product> FilterTopThree(IEnumerable<Product> thisList)
         {
-            EFProductRepository proRepo = new EFProductRepository(new TestDbContext());
             List<Product> topProducts = new List<Product>();
-            var orderedProducts = proRepo.Products.Include(p => p.Reviews).ToList().OrderByDescending(p => p.Reviews.Count);
+            List<Product> orderList = thisList.OrderByDescending(p => p.Reviews.Count).ToList();
             int numTopProducts = 3;
-            if (orderedProducts.Count() < 3)
+            if (orderList.Count < 3)
             {
-                numTopProducts = orderedProducts.Count();
+                numTopProducts = orderList.Count;
             }
             for (int i = 0; i < numTopProducts; i++)
             {
-                topProducts.Add(orderedProducts.ElementAt(i));
+                topProducts.Add(orderList[i]);
             }
             return topProducts;
         }
+
+
 
     }
 
