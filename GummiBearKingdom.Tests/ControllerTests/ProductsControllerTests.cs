@@ -7,6 +7,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using GummiBearKingdom.Models;
 using Moq;
+using GummiBearKingdom.ViewModels;
 
 namespace GummiBearKingdom.Tests
 {
@@ -126,10 +127,10 @@ namespace GummiBearKingdom.Tests
             ProductsController controller = new ProductsController(mock.Object);
 
             var resultView = controller.Details(testProduct.ProductId) as ViewResult;
-            var model = resultView.ViewData.Model as Product;
+            var model = resultView.ViewData.Model as ProductReview;
 
             Assert.IsInstanceOfType(resultView, typeof(ViewResult));
-            Assert.IsInstanceOfType(model, typeof(Product));
+            Assert.IsInstanceOfType(model, typeof(ProductReview));
         }
 
         [TestMethod]

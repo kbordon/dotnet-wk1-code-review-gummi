@@ -1,4 +1,4 @@
-﻿@model GummiBearKingdom.Models.Product  
+﻿@model GummiBearKingdom.ViewModels.ProductReview  
 
 @{
     ViewData["Title"] = "Gummi Bear Kingdom : Products - Details";
@@ -7,10 +7,10 @@
 
 <h2>Product Details</h2>
 <hr />
-@if(Model.Image != null)
+@if(Model.Product.Image != null)
  {
     <p>
-        <img src='@Url.Action("GetImage", "Products", new { id = Model.ProductId})'/>
+        <img src='@Url.Action("GetImage", "Products", new { id = Model.Product.ProductId})'/>
     </p>
  }
 else
@@ -20,18 +20,43 @@ else
     </p>
  }
 
-<p>@Html.DisplayNameFor(model => model.Name):</p>
-<p>@Html.DisplayFor(model => model.Name)</p>
+<p>@Html.DisplayNameFor(model => model.Product.Name):</p>
+<p>@Html.DisplayFor(model => model.Product.Name)</p>
 
-<p>@Html.DisplayNameFor(model => model.Description):</p>
-<p>@Html.DisplayFor(model => model.Description)</p>
+<p>@Html.DisplayNameFor(model => model.Product.Description):</p>
+<p>@Html.DisplayFor(model => model.Product.Description)</p>
 
-<p>@Html.DisplayNameFor(model => model.Cost):</p>
-<p>@Html.DisplayFor(model => model.Cost)</p>
+<p>@Html.DisplayNameFor(model => model.Product.Cost):</p>
+<p>@Html.DisplayFor(model => model.Product.Cost)</p>
  
 <p>
-    @Html.ActionLink("Reviews", "GetAll", "Reviews", new { id = Model.ProductId}) |  
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId}) | 
-    @Html.ActionLink("Delete", "Delete", new { id = Model.ProductId}) |
+    @Html.ActionLink("Reviews", "GetAll", "Reviews", new { id = Model.Product.ProductId}) |  
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Product.ProductId}) | 
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Product.ProductId}) |
     @Html.ActionLink("Back to Products", "Index")
 </p>
+
+<div class="modal-review">
+    <div class="form">
+        @using (Html.BeginForm("Create", "Reviews", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.Review.ProductId)
+        
+            <p>
+                @Html.LabelFor(m => m.Review.Author):
+            </p>
+            <p>
+                @Html.TextBoxFor(model => m.Review.Author)
+            </p>
+
+            <p>
+                @Html.LabelFor(model => model.Description)
+            </p>
+            <p>
+                @Html.TextBoxFor(model => model.Description)
+            </p>
+            
+            <input type="submit"/> 
+        }
+    </div>
+</div>

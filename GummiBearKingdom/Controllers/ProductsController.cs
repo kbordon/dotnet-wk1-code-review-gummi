@@ -63,7 +63,10 @@ namespace GummiBearKingdom.Controllers
         public IActionResult Details(int id)
         {
             Product thisProduct = productRepo.Products.Include(p => p.Reviews).FirstOrDefault(p => p.ProductId == id);
-            return View(thisProduct); 
+            ProductReview thisProductReview = new ProductReview();
+            thisProductReview.Product = thisProduct;
+            thisProductReview.Review.ProductId = id;
+            return View(thisProductReview); 
         }
 
         public IActionResult Edit(int id)
