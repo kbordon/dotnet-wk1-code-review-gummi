@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using GummiBearKingdom.Models;
 using Moq;
 
-namespace GummiBearKingdom.Tests.ControllerTests
+namespace GummiBearKingdom.Tests
 {
     [TestClass]
     public class HomeControllerTests

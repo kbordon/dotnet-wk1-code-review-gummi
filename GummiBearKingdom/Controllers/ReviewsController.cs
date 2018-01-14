@@ -36,7 +36,7 @@ namespace GummiBearKingdom.Controllers
         {
             
             reviewRepo.Save(review);
-            return RedirectToAction("Details", "Product", new { id = review.ProductId});
+            return RedirectToAction("Details", "Products", new { id = review.ProductId});
         }
 
     }
