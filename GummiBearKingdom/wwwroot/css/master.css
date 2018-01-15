@@ -140,3 +140,52 @@ textarea {
     color: red;
 }
 
+.modal-review {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color:rgba(0,0,0,0.75);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    }
+
+.form {
+    position: relative;
+    background-color: white;
+    padding: 50px;
+    width: 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+.form input[type=text] {
+    background-color: lightgray;
+    border: none;
+}
+.form input[type=submit] {
+    background-color: yellow;
+    padding: 25px 50px;
+    width: 100%;
+    font-size: large;
+    border: 0;
+}
+
+.form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.exit-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: yellow;
+    padding: 5px 10px;
+}
+
+.exit-button:hover {
+    background-color: red;
+}

@@ -73,34 +73,38 @@ else
 
 <div class="modal-review">
     <div class="form">
+        <p class="exit-button">X</p>
         @if(Model.ReviewFail)
         {
             <h3>Your review is too long. Please limit to 255 characters.</h3>
         }
-        @using (Html.BeginForm("Create", "Reviews", FormMethod.Post))
-        {
-            @Html.HiddenFor(m => m.Review.ProductId)
-        
-            <p>
-                @Html.LabelFor(m => m.Review.Author):
-            </p>
-            <p>
-                @Html.TextBoxFor(m => m.Review.Author)
-            </p>
-            <p>
-                @Html.LabelFor(m => m.Review.ContentBody):
-            </p>
-            <p>
-                @Html.TextBoxFor(m => m.Review.ContentBody)
-            </p>
-            <p>
-                @Html.LabelFor(m => m.Review.Rating):
-            </p>
-            <p>
-                @Html.TextBoxFor(m => m.Review.Rating)
-            </p>
+        <h1>Review for <em>@Model.Product.Name</em></h1> 
+        <hr/>
+            @using (Html.BeginForm("Create", "Reviews", FormMethod.Post))
+            {
+                @Html.HiddenFor(m => m.Review.ProductId)
             
-            <input type="submit"/> 
-        }
+                <p>
+                    @Html.LabelFor(m => m.Review.Author):
+                </p>
+                    @Html.TextBoxFor(m => m.Review.Author)
+
+                 <p>
+                    @Html.LabelFor(m => m.Review.Rating):
+                </p>
+                <p>
+                    @Html.TextBoxFor(m => m.Review.Rating)
+                </p>
+           
+                <p>
+                    @Html.LabelFor(m => m.Review.ContentBody):
+                </p>
+                <p>
+                    @Html.TextAreaFor(m => m.Review.ContentBody, new { maxlength = 255})
+                </p>
+               
+                
+                <input type="submit" value="SUBMIT"=/> 
+            }
     </div>
 </div>

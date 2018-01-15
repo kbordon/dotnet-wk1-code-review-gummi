@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add a product to the Gummi Bear Kingdom</h2>
+<h2>Add a Product:</h2>
 <hr/>
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype="multipart/form-data"}))
@@ -19,7 +19,7 @@
         @Html.LabelFor(model => model.Description)
     </p>
     <p>
-        @Html.TextBoxFor(model => model.Description)
+        @Html.TextAreaFor(model => model.Description)
     </p>
     <p>
         @Html.LabelFor(model => model.Cost)
