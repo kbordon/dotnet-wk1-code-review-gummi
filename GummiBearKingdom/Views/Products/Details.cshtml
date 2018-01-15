@@ -61,7 +61,7 @@ else
     @Html.ActionLink("Delete", "Delete", new { id = Model.Product.ProductId}) |
     @Html.ActionLink("Back to Products", "Index")
 </p>
-
+<p onclick="toggleModal()">Add a Review</p>
 <div class="details-reviews">
     @foreach(var review in Model.Product.Reviews)
     {
@@ -69,11 +69,11 @@ else
         <p>@review.Rating</p>
         <p>@review.ContentBody</p>
     }
-</div>
+</div> 
 
-<div class="modal-review">
+<div id="modal-review">
     <div class="form">
-        <p class="exit-button">X</p>
+        <p class="exit-button" onclick="toggleModal();">X</p>
         @if(Model.ReviewFail)
         {
             <h3>Your review is too long. Please limit to 255 characters.</h3>
@@ -87,7 +87,7 @@ else
                 <p>
                     @Html.LabelFor(m => m.Review.Author):
                 </p>
-                    @Html.TextBoxFor(m => m.Review.Author)
+                    @Html.TextBoxFor(m => m.Review.Author, new { required = "required", maxlength = 50})
 
                  <p>
                     @Html.LabelFor(m => m.Review.Rating):
@@ -100,9 +100,8 @@ else
                     @Html.LabelFor(m => m.Review.ContentBody):
                 </p>
                 <p>
-                    @Html.TextAreaFor(m => m.Review.ContentBody, new { maxlength = 255})
-                </p>
-               
+                    @Html.TextAreaFor(m => m.Review.ContentBody, new { required = "required", maxlength = 255}) 
+                </p>   
                 
                 <input type="submit" value="SUBMIT"=/> 
             }
