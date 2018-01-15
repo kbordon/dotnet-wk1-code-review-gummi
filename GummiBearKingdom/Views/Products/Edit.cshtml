@@ -8,6 +8,7 @@
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.ProductId)
+    @Html.HiddenFor(model => model.Image)
 
     <p>
         @Html.LabelFor(model => model.Name)

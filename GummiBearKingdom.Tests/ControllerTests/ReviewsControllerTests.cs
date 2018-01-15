@@ -77,10 +77,11 @@ namespace GummiBearKingdom.Tests
             DbSetup();
             ViewResult getAllView = new ReviewsController(mock.Object).GetAll(1) as ViewResult;
 
-            var result = getAllView.ViewData.Model;
+            List<Review> result = getAllView.ViewData.Model as List<Review>;
 
             Assert.IsInstanceOfType(getAllView, typeof(ViewResult));
             Assert.IsInstanceOfType(result, typeof(List<Review>));
+            Assert.AreEqual(2, result.Count);
         }
     }
 }

@@ -48,9 +48,10 @@ namespace GummiBearKingdom.Controllers
         }
 
         //[HttpGet("/Products/{productId}/Reviews")]
-        public IActionResult GetAll(int productId)
+        public IActionResult GetAll(int id)
         {
-            var productReviews = reviewRepo.Reviews.Where(r => r.ProductId == productId).ToList();
+            List<Review> productReviews = reviewRepo.Reviews.Include(r => r.Product).Where(r => r.ProductId == id).ToList();
+            Console.WriteLine("######################"+productReviews.Count+ "******");
             return View("Reviews", productReviews);
         }
 

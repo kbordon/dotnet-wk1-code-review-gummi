@@ -1,1 +1,22 @@
-﻿
+﻿@model IEnumerable<GummiBearKingdom.Models.Review>
+
+@{
+    ViewData["Title"] = "Gummi Bear Kingdom : Reviews";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Reviews for <em>@Model.ElementAt(0).Product.Name</em></h1> 
+
+<div class="reviews">
+    @foreach (var review in Model)
+    {
+        <h2>@review.Author</h2>
+        for(var i = 0; i < review.Rating; i++)
+        {
+               <strong>★</strong>
+        }
+        <p>@review.ContentBody</p>
+    } 
+</div> 
+
+<p>@Html.ActionLink($"Return to {@Model.ElementAt(0).Product.Name} details", "Details", "Products", new { id = @Model.ElementAt(0).ProductId})</p>

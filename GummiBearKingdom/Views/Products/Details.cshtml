@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Product Details</h2>
+<h2>Details: @Model.Product.Name </h2>
 <hr />
 @if(Model.Product.Image != null)
  {
@@ -30,19 +30,33 @@ else
 <p>@Html.DisplayFor(model => model.Product.Cost)</p>
 
 <p>Average Rating:</p>
-<p>@Model.Product.GetRating()</p> 
-@for(var i = 0; i < Math.Floor(Model.Product.GetRating()); i++)
+@if(Model.Product.GetRating() == 0)
 {
-    <strong>★</strong>
+    <em>This product has not been rated yet.</em>
 }
-@if(Math.Floor(Model.Product.GetRating()) < Model.Product.GetRating())
+else
 {
-    <strong>★</strong>
+    <p>@Model.Product.GetRating()</p> 
+    @for(var i = 0; i < Math.Floor(Model.Product.GetRating()); i++)
+    {
+        <strong>★</strong>
+    }
+    @if(Math.Floor(Model.Product.GetRating()) < Model.Product.GetRating())
+    {
+        <strong>★</strong>
+    }
+}
 
-}
  
 <p>
-    @Html.ActionLink("Reviews", "GetAll", "Reviews", new { id = Model.Product.ProductId}) |  
+    @if(Model.Product.Reviews.Count > 0)
+    {
+            @Html.ActionLink("Reviews", "GetAll", "Reviews", new { id = Model.Product.ProductId})
+    }
+    else
+    {
+        <em>No reviews submitted yet.</em>
+    } |
     @Html.ActionLink("Edit", "Edit", new { id = Model.Product.ProductId}) | 
     @Html.ActionLink("Delete", "Delete", new { id = Model.Product.ProductId}) |
     @Html.ActionLink("Back to Products", "Index")
