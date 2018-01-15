@@ -189,4 +189,8 @@ textarea {
 .exit-button:hover {
     background-color: red;
 }
- 
+
+.home-products {
+    display: flex;
+    justify-content: space-around;
+}
