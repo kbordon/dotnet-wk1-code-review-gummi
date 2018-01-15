@@ -24,18 +24,28 @@ body {
     background-blend-mode: screen;
     /*font-family: 'Pavanam', sans-serif*/
     font-family: 'Didact Gothic', serif;
+    background-size: cover;
+    background-repeat: none;
 
 }
 
 h1 {
     /*font-family: 'Lora', serif*/
     font-family: 'Fredoka One', serif;
-
+    font-size: 50px;
+    margin: 10px;
+    text-shadow: -1px -1px red,
+                    1px 1px white; 
 }
 
 h2, h3, h4 {
     /*font-family: 'Josefin Slab', serif*/;
-    font-family: 'Fredoka One', serif
+    font-family: 'Didact Gothic', serif;
+    font-weight:900;
+}
+
+h2 {
+    font-size: xx-large;
 }
 
 .header {
@@ -65,7 +75,7 @@ h2, h3, h4 {
     color: white;
 }
 
-.container {    background-color: rgba(255,255,255, 0.9);
+.container {    background-color: rgba(255,255,255, 0.93);
     padding: 20px;
     margin: 5%;
 }
@@ -193,4 +203,8 @@ textarea {
 .home-products {
     display: flex;
     justify-content: space-around;
+}
+
+a {
+    font-weight: bolder;
 }
