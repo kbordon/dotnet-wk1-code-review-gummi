@@ -252,6 +252,32 @@ a {
   width: 30%;
 }
 
+.review {
+  background-color: lightyellow;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+img {
+  width: 100%;
+}
+.stars {
+  display: flex;
+  margin: 5px;
+}
+.star {
+  display: inline;
+  width: 16px ;
+}
+.half-star {
+  width: 8px;
+  display: inline;
+  overflow: hidden;
+}
+.number {
+  padding-left: 8px;
+}
+
 @media only screen and (min-width: 768px) {
   .details-container {
     justify-content: space-around;

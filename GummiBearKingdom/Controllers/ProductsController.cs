@@ -70,6 +70,7 @@ namespace GummiBearKingdom.Controllers
             {
                 thisPR.ReviewFail = invalidReview;
             }
+            thisPR.Product.Reviews = thisPR.Product.Reviews.OrderByDescending(r => r.Date).ToList();
             return View(thisPR); 
         }
 

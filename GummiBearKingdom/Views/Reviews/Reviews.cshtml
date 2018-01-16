@@ -5,18 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Reviews for <em>@Model.ElementAt(0).Product.Name</em></h1> 
+<h2>Reviews for <em>@Model.ElementAt(0).Product.Name</em></h2>
 
-<div class="reviews">
     @foreach (var review in Model)
     {
+      <div class="review">
         <h2>@review.Author</h2>
-        for(var i = 0; i < review.Rating; i++)
+        <h4><em>@review.Date.ToString("MMM d, yyyy h:mm tt")</em></h4>
+        @for(var i = 0; i < review.Rating; i++)
         {
                <strong>★</strong>
         }
         <p>@review.ContentBody</p>
-    } 
-</div> 
+      </div>
+    }
 
 <p>@Html.ActionLink($"Return to {@Model.ElementAt(0).Product.Name} details", "Details", "Products", new { id = @Model.ElementAt(0).ProductId})</p>

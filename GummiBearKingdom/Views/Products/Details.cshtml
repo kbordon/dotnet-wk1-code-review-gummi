@@ -37,15 +37,23 @@
         }
         else
         {
-            <p>@Model.Product.GetRating()</p>
-            @for(var i = 0; i < Math.Floor(Model.Product.GetRating()); i++)
-            {
-                <strong>★</strong>
-            }
-            @if(Math.Floor(Model.Product.GetRating()) < Model.Product.GetRating())
-            {
-                <strong>★</strong>
-            }
+            <div class="stars">
+              @for(var i = 0; i < Math.Floor(Model.Product.GetRating()); i++)
+              {
+                  <div class="star">
+                    <strong>★</strong>
+                  </div>
+              }
+              @if(Math.Floor(Model.Product.GetRating()) + 0.5 < Model.Product.GetRating())
+              {
+                <div class="half-star">
+                  <strong>★</strong>
+                </div>
+              }
+              <div class="number">
+                (@Model.Product.GetRating())
+              </div>
+            </div>
         }
 
         <p class="details-button" onclick="toggleModal()">Add a Review</p>
@@ -59,18 +67,35 @@
     <h2>Most Recent Reviews</h2>
         @if(Model.Product.Reviews.Count > 0)
         {
-                <p class="details-button">@Html.ActionLink($"See All Reviews ({Model.Product.Reviews.Count})", "GetAll", "Reviews", new { id = Model.Product.ProductId})</p>
+            <p class="details-button">@Html.ActionLink($"See All Reviews ({Model.Product.Reviews.Count})", "GetAll", "Reviews", new { id = Model.Product.ProductId})</p>
+                if(Model.Product.Reviews.Count < 3)
+                {
+                    foreach(var review in Model.Product.Reviews)
+                    {
+                        <div class="review">
+                            <h3>@review.Author</h3>
+                            <h4><em>@review.Date.ToString("MMM d, yyyy h:mm tt")</em></h4>
+                            <p>@review.Rating</p>
+                            <p>@review.ContentBody</p>
+                        </div>
+                    }
+                }
+                else
+                {
+                    for(var x = 0; x < 3; x++)
+                    {
+                        <div class="review">
+                          <h3>@Model.Product.Reviews.ElementAt(x).Author</h3>
+                          <h4><em>@Model.Product.Reviews.ElementAt(x).Date.ToString("MMM d, yyyy h:mm tt")</em></h4>
+                          <p>@Model.Product.Reviews.ElementAt(x).Rating</p>
+                          <p>@Model.Product.Reviews.ElementAt(x).ContentBody</p>
+                        </div>
+                    }
+                }
         }
         else
         {
             <em>No reviews submitted yet.</em>
-        }
-        @foreach(var review in Model.Product.Reviews)
-        {
-            <h3>@review.Author</h3>
-            <h4><em>@review.Date.ToString("MMM d, yyyy h:mm tt")</em></h4>
-            <p>@review.Rating</p>
-            <p>@review.ContentBody</p>
         }
     </div>
 </div>
