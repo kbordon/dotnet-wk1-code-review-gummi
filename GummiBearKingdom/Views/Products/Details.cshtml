@@ -1,4 +1,4 @@
-﻿@model GummiBearKingdom.ViewModels.ProductReview  
+﻿@model GummiBearKingdom.ViewModels.ProductReview
 
 @{
     ViewData["Title"] = "Gummi Bear Kingdom : Products - Details";
@@ -7,69 +7,73 @@
 
 <h2>Details: @Model.Product.Name </h2>
 <hr />
-@if(Model.Product.Image != null)
- {
-    <p>
-        <img src='@Url.Action("GetImage", "Products", new { id = Model.Product.ProductId})'/>
-    </p>
- }
-else
- {
-    <p>
-        <em>No Image Available.</em>
-    </p>
- }
+<div class="details-container">
+    <div class="details-product">
+        @if(Model.Product.Image != null)
+         {
+            <p>
+                <img src='@Url.Action("GetImage", "Products", new { id = Model.Product.ProductId})'/>
+            </p>
+         }
+        else
+         {
+            <p>
+                <em>No Image Available.</em>
+            </p>
+         }
 
-<p>@Html.DisplayNameFor(model => model.Product.Name):</p>
-<p>@Html.DisplayFor(model => model.Product.Name)</p>
+        <h3>@Html.DisplayFor(model => model.Product.Name)</h3>
 
-<p>@Html.DisplayNameFor(model => model.Product.Description):</p>
-<p>@Html.DisplayFor(model => model.Product.Description)</p>
+        <p>@Html.DisplayNameFor(model => model.Product.Description):</p>
+        <p>@Html.DisplayFor(model => model.Product.Description)</p>
 
-<p>@Html.DisplayNameFor(model => model.Product.Cost):</p>
-<p>@Html.DisplayFor(model => model.Product.Cost)</p>
+        <p>@Html.DisplayNameFor(model => model.Product.Cost):</p>
+        <p>@Html.DisplayFor(model => model.Product.Cost)</p>
 
-<p>Average Rating:</p>
-@if(Model.Product.GetRating() == 0)
-{
-    <em>This product has not been rated yet.</em>
-}
-else
-{
-    <p>@Model.Product.GetRating()</p> 
-    @for(var i = 0; i < Math.Floor(Model.Product.GetRating()); i++)
-    {
-        <strong>★</strong>
-    }
-    @if(Math.Floor(Model.Product.GetRating()) < Model.Product.GetRating())
-    {
-        <strong>★</strong>
-    }
-}
+        <p>Average Rating:</p>
+        @if(Model.Product.GetRating() == 0)
+        {
+            <em>This product has not been rated yet.</em>
+        }
+        else
+        {
+            <p>@Model.Product.GetRating()</p>
+            @for(var i = 0; i < Math.Floor(Model.Product.GetRating()); i++)
+            {
+                <strong>★</strong>
+            }
+            @if(Math.Floor(Model.Product.GetRating()) < Model.Product.GetRating())
+            {
+                <strong>★</strong>
+            }
+        }
 
- 
-<p>
-    @if(Model.Product.Reviews.Count > 0)
-    {
-            @Html.ActionLink("Reviews", "GetAll", "Reviews", new { id = Model.Product.ProductId})
-    }
-    else
-    {
-        <em>No reviews submitted yet.</em>
-    } |
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Product.ProductId}) | 
-    @Html.ActionLink("Delete", "Delete", new { id = Model.Product.ProductId}) |
-    @Html.ActionLink("Back to Products", "Index")
-</p>
-<p onclick="toggleModal()">Add a Review</p>
-<div class="details-reviews">
-    @foreach(var review in Model.Product.Reviews)
-    {
-        <h4>@review.Author</h4>
-        <p>@review.Rating</p>
-        <p>@review.ContentBody</p>
-    }
-</div> 
+        <p class="details-button" onclick="toggleModal()">Add a Review</p>
+        <p>
+            <span class="button">@Html.ActionLink("Edit", "Edit", new { id = Model.Product.ProductId})</span> |
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Product.ProductId}) |
+            @Html.ActionLink("Back to Products", "Index")
+        </p>
+    </div>
+    <div class="details-reviews">
+    <h2>Most Recent Reviews</h2>
+        @if(Model.Product.Reviews.Count > 0)
+        {
+                <p class="details-button">@Html.ActionLink($"See All Reviews ({Model.Product.Reviews.Count})", "GetAll", "Reviews", new { id = Model.Product.ProductId})</p>
+        }
+        else
+        {
+            <em>No reviews submitted yet.</em>
+        }
+        @foreach(var review in Model.Product.Reviews)
+        {
+            <h3>@review.Author</h3>
+            <h4><em>@review.Date.ToString("MMM d, yyyy h:mm tt")</em></h4>
+            <p>@review.Rating</p>
+            <p>@review.ContentBody</p>
+        }
+    </div>
+</div>
 
 <div id="modal-review">
     <div class="form">
@@ -78,12 +82,12 @@ else
         {
             <h3>Your review is too long. Please limit to 255 characters.</h3>
         }
-        <h2>Review for <em>@Model.Product.Name</em></h2> 
+        <h2>Review for <em>@Model.Product.Name</em></h2>
         <hr/>
             @using (Html.BeginForm("Create", "Reviews", FormMethod.Post))
             {
                 @Html.HiddenFor(m => m.Review.ProductId)
-            
+
                 <p>
                     @Html.LabelFor(m => m.Review.Author):
                 </p>
@@ -95,15 +99,15 @@ else
                 <p>
                     @Html.TextBoxFor(m => m.Review.Rating)
                 </p>
-           
+
                 <p>
                     @Html.LabelFor(m => m.Review.ContentBody):
                 </p>
                 <p>
-                    @Html.TextAreaFor(m => m.Review.ContentBody, new { required = "required", maxlength = 255}) 
-                </p>   
-                
-                <input type="submit" value="SUBMIT"=/> 
+                    @Html.TextAreaFor(m => m.Review.ContentBody, new { required = "required", maxlength = 255})
+                </p>
+
+                <input type="submit" value="SUBMIT"=/>
             }
     </div>
 </div>

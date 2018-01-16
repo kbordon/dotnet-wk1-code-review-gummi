@@ -42,6 +42,8 @@ namespace GummiBearKingdom.Migrations
 
                     b.Property<string>("ContentBody");
 
+                    b.Property<DateTime>("Date");
+
                     b.Property<int>("ProductId");
 
                     b.Property<int>("Rating");
