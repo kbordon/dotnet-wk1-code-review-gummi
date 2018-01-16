@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Products</h2>
 <p>
     @Html.ActionLink("Add Product", "Create")
 </p>
@@ -14,9 +13,38 @@
 <div class="products">
     @foreach (var listProduct in Model)
     {
-         <p>
-            <a href='@Url.Action("Details", new { id = listProduct.ProductId})'>@Html.DisplayFor(modelItem => listProduct.Name)</a> @Html.DisplayFor(modelItem => listProduct.Cost)
-        </p>
+        <div class="products-product">
+             <p>
+                <a href='@Url.Action("Details", new { id = listProduct.ProductId})'>@Html.DisplayFor(modelItem => listProduct.Name)</a>
+            </p>
+
+            <p>
+                @Html.Raw("$")@Html.DisplayFor(modelItem => listProduct.Cost)
+            </p>
+            <p>
+              
+                 @if(listProduct.GetRating() > 0)
+                {
+                    <div class="stars">
+                      @for(var i = 0; i < Math.Floor(listProduct.GetRating()); i++)
+                      {
+                          <div class="star">
+                            <strong>★</strong>
+                          </div>
+                      }
+                      @if(Math.Floor(listProduct.GetRating()) + 0.5 < listProduct.GetRating())
+                      {
+                        <div class="half-star">
+                          <strong>★</strong>
+                        </div>
+                      }
+                      <div class="number">
+                        (@listProduct.GetRating())
+                      </div>
+                    </div>
+                }
+            </p>
+        </div>
     } 
 </div> 
 

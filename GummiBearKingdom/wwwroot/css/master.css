@@ -120,37 +120,39 @@ textarea {
     display: flex;
     flex-wrap: wrap;
     font-size: 30px;
-    align-content: space-between;
+
 }
 
-.products p {
+.products .products-product {
     text-align:center;
-    margin-left: auto;
-    margin-right: auto;
+    /*margin-left: auto;
+    margin-right: auto;*/
     margin-top: 5px;
     margin-bottom: 5px;
     width: 30%;
     /*background-color: lightgoldenrodyellow;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-radius: 25px;
     padding: 10px;
 }
 
-    .products p:nth-child(5n+2) a {
-        color: #e6b800;
-
+    .products .products-product:nth-child(5n+2) a {
+        color: #e6b800
     }
 
-.products p:nth-child(5n+3) a {
-    color: limegreen;
-}
+    .products .products-product:nth-child(5n+3) a {
+        color: limegreen
+    }
 
-.products p:nth-child(5n+4) a {
-    color: orange;
-}
+    .products .products-product:nth-child(5n+4) a {
+        color: orange
+    }
 
-.products p:nth-child(5n+5) a {
-    color: red;
-}
+    .products .products-product:nth-child(5n+5) a {
+        color: red
+    }
 
 #modal-review {
     position: absolute;
@@ -209,6 +211,45 @@ textarea {
     cursor: pointer;
 }
 
+.form-two {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+.form-two input[type=text], input[type=number] {
+    font-size: large;
+    background-color: white;
+    border: none;
+}
+
+.form-two textarea {
+    border: none;
+    background-color: white;
+    width: 100%;
+}
+
+.form-two label {
+    font-style: italic;
+}
+
+.form-two input[type=submit] {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: yellow;
+    padding: 25px 50px;
+    width: 100%;
+    font-size: large;
+    border: 0
+}
+
+.form-two input[type=submit]:hover {
+    background-color: purple;
+    color: white;
+    cursor: pointer
+}
+
 .home-products {
     display: flex;
     justify-content: space-around;
@@ -231,6 +272,15 @@ a {
 
 .details-reviews {
   width: 100%;
+}
+
+.details-button a {
+    text-decoration: none;
+    color: black;
+}
+
+.details-button a:hover {
+    text-decoration: none;
 }
 
 .details-button {
@@ -262,10 +312,14 @@ img {
   width: 100%;
 }
 .stars {
-  display: flex;
-  margin: 5px;
+    font-size: 16px;
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
+
 .star {
+  font-size: 16px;
   display: inline;
   width: 16px ;
 }
@@ -277,7 +331,10 @@ img {
 .number {
   padding-left: 8px;
 }
-
+ 
+input[type=file] {
+    padding: 10px; 
+}
 @media only screen and (min-width: 768px) {
   .details-container {
     justify-content: space-around;

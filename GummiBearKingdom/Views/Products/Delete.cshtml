@@ -5,12 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Are you sure you want to delete this?</h2>
-<hr/>
-@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)
-@using (Html.BeginForm())
-{
-    <input type="submit" value="Delete"/> 
-}
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+<div class="form-two">
+    @using (Html.BeginForm())
+    {
+        <h3><em>Are you sure you want to delete this?</em></h3>
+        <input type="submit" value="Delete"/> 
+    }
 
-<p>@Html.ActionLink("Back to Product", "Index")</p>
+</div>
+
+<p>@Html.ActionLink($"Return to {@Model.Name} details", "Details", "Products", new { id = @Model.ProductId})</p>

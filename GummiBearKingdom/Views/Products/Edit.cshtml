@@ -4,34 +4,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Product Edit: @Html.DisplayFor(model => model.Name)</h2>
-@using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.ProductId)
-    @Html.HiddenFor(model => model.Image)
+<h2>Edit: @Html.DisplayFor(model => model.Name)</h2>
+<div class="form-two">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.ProductId)
+        @Html.HiddenFor(model => model.Image)
 
-    <p>
-        @Html.LabelFor(model => model.Name)
-    </p>
-    <p>
-        @Html.EditorFor(model => model.Name)
-    </p>
 
-    <p>
-        @Html.LabelFor(model => model.Description)
-    </p>
-    <p>
-        @Html.EditorFor(model => model.Description)
-    </p>
+        <p>
+            @Html.LabelFor(model => model.Name)
+        </p>
+        <p>
+            @Html.EditorFor(model => model.Name)
+        </p>
 
-    <p>
-        @Html.LabelFor(model => model.Cost)
-    </p>
-    <p>
-        @Html.EditorFor(model => model.Cost)
-    </p>
+        <p>
+            @Html.LabelFor(model => model.Description)
+        </p>
+        <p>
+            @Html.EditorFor(model => model.Description)
+        </p>
 
-    <input type="submit" value="Save Changes" class="btn btn-default"/>
-}
+        <p>
+            @Html.LabelFor(model => model.Cost)
+        </p>
+        <p>
+            @Html.EditorFor(model => model.Cost) 
+        </p>
 
-@Html.ActionLink("Back to Products", "Index")
+        <input type="submit" value="Save Changes" class="btn btn-default"/>
+    }
+  </div> 
+<p>@Html.ActionLink($"Return to {@Model.Name} details", "Details", "Products", new { id = @Model.ProductId})</p>

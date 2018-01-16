@@ -5,10 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details: @Model.Product.Name </h2>
-<hr />
 <div class="details-container">
     <div class="details-product">
+        <h2>@Html.DisplayFor(model => model.Product.Name)</h2>
         @if(Model.Product.Image != null)
          {
             <p>
@@ -22,16 +21,7 @@
             </p>
          }
 
-        <h3>@Html.DisplayFor(model => model.Product.Name)</h3>
-
-        <p>@Html.DisplayNameFor(model => model.Product.Description):</p>
-        <p>@Html.DisplayFor(model => model.Product.Description)</p>
-
-        <p>@Html.DisplayNameFor(model => model.Product.Cost):</p>
-        <p>@Html.DisplayFor(model => model.Product.Cost)</p>
-
-        <p>Average Rating:</p>
-        @if(Model.Product.GetRating() == 0)
+         @if(Model.Product.GetRating() == 0)
         {
             <em>This product has not been rated yet.</em>
         }
@@ -55,6 +45,9 @@
               </div>
             </div>
         }
+        <p>@Html.DisplayNameFor(model => model.Product.Description):</p>
+        <p>@Html.DisplayFor(model => model.Product.Description)</p>
+        <p>@Html.Raw("$")@Html.DisplayFor(model => model.Product.Cost)</p>
 
         <p class="details-button" onclick="toggleModal()">Add a Review</p>
         <p>

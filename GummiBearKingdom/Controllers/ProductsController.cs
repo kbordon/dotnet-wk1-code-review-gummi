@@ -33,7 +33,7 @@ namespace GummiBearKingdom.Controllers
         public ActionResult Index()
         {
             //return View(Product.GetTopThree());
-            return View(productRepo.Products.ToList());
+            return View(productRepo.Products.Include(p => p.Reviews).ToList());
         }
 
         public IActionResult Create()
