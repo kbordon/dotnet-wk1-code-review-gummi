@@ -50,8 +50,7 @@ namespace GummiBearKingdom.Controllers
         //[HttpGet("/Products/{productId}/Reviews")]
         public IActionResult GetAll(int id)
         {
-            List<Review> productReviews = reviewRepo.Reviews.Include(r => r.Product).Where(r => r.ProductId == id).ToList();
-            Console.WriteLine("######################"+productReviews.Count+ "******");
+            List<Review> productReviews = reviewRepo.Reviews.Include(r => r.Product).Where(r => r.ProductId == id).OrderByDescending(r => r.Date).ToList();
             return View("Reviews", productReviews);
         }
 

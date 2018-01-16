@@ -18,14 +18,15 @@ body {
 }
 
 body {
-    background: 
-        linear-gradient(purple 0%, red 90%), 
+    background:
+        linear-gradient(purple 0%, red 90%),
         url('/img/gbk_bg.jpg');
     background-blend-mode: screen;
     /*font-family: 'Pavanam', sans-serif*/
     font-family: 'Didact Gothic', serif;
+    font-size: 100%;
     background-size: cover;
-    background-repeat: none;
+    background-repeat: no-repeat;
 
 }
 
@@ -69,13 +70,14 @@ h2 {
 .header a {
     color: #9c27b0;
     text-decoration: none
-    }
+}
 
 .header a:hover{
     color: white;
 }
 
-.container {    background-color: rgba(255,255,255, 0.93);
+.container {
+    background-color: rgba(255,255,255, 0.93);
     padding: 20px;
     margin: 5%;
 }
@@ -149,7 +151,7 @@ textarea {
 .products p:nth-child(5n+5) a {
     color: red;
 }
- 
+
 #modal-review {
     position: absolute;
     top: 0;
@@ -183,6 +185,12 @@ textarea {
     border: 0;
 }
 
+.form input[type=submit]:hover {
+    background-color: purple;
+    color: white;
+    cursor: pointer;
+}
+
 .form textarea {
     width: 100%;
     margin-bottom: 50px;
@@ -198,6 +206,7 @@ textarea {
 
 .exit-button:hover {
     background-color: red;
+    cursor: pointer;
 }
 
 .home-products {
@@ -207,4 +216,78 @@ textarea {
 
 a {
     font-weight: bolder;
+}
+
+.details-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5%;
+}
+
+.details-product {
+  width: 100%;
+}
+
+.details-reviews {
+  width: 100%;
+}
+
+.details-button {
+  background-color: yellow;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.details-button:hover{
+  background-color: purple;
+  color: white;
+  cursor: pointer;
+}
+
+.button {
+  width: 30%;
+}
+
+.review {
+  background-color: lightyellow;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+img {
+  width: 100%;
+}
+.stars {
+  display: flex;
+  margin: 5px;
+}
+.star {
+  display: inline;
+  width: 16px ;
+}
+.half-star {
+  width: 8px;
+  display: inline;
+  overflow: hidden;
+}
+.number {
+  padding-left: 8px;
+}
+
+@media only screen and (min-width: 768px) {
+  .details-container {
+    justify-content: space-around;
+    padding: 0;
+  }
+  .details-reviews, .details-product {
+      width: 40%;
+  }
+
+  .details-reviews {
+    overflow: scroll;
+  }
 }
