@@ -4,39 +4,42 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add a Product:</h2>
-<hr/>
+<div class="form-two">
+    <h2>Add a Product:</h2>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype="multipart/form-data"}))
+    {
+        <p>
+            @Html.LabelFor(model => model.Name)
+        </p>
+        <p>
+            @Html.EditorFor(model => model.Name)
+        </p>
+        <p>
+            @Html.LabelFor(model => model.Description)
+        </p>
+        <p>
+            @Html.TextAreaFor(model => model.Description)
+        </p>
+        <p>
+            @Html.LabelFor(model => model.Cost)
+        </p>
+        <p>
+            @Html.TextBoxFor(model => model.Cost, new { type = "number"})
+        </p>
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype="multipart/form-data"}))
-{
-    <p>
-        @Html.LabelFor(model => model.Name)
-    </p>
-    <p>
-        @Html.EditorFor(model => model.Name)
-    </p>
-    <p>
-        @Html.LabelFor(model => model.Description)
-    </p>
-    <p>
-        @Html.TextAreaFor(model => model.Description)
-    </p>
-    <p>
-        @Html.LabelFor(model => model.Cost)
-    </p>
-    <p>
-        @Html.TextBoxFor(model => model.Cost, new { type = "number"})
-    </p>
-
-    <p>
-        @Html.LabelFor(model => model.Image)
-    </p>
-    <p>
-        <input type="file" id="Image" name="Image"/>
-    </p>
+        <p>
+            @Html.LabelFor(model => model.Image)
+        </p>
+        <p>
+            <input type="file" id="Image" name="Image"/>
+        </p>
 
 
-    <input type="submit" value="Submit Product"/>
-}
+        <input type="submit" value="Submit Product"/>
+    } 
+
+</div>
+
+
 
 @Html.ActionLink("Back to Products", "Index")
