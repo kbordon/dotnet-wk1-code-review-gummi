@@ -18,10 +18,10 @@ body {
 }
 
 body {
-    background:
+    /*background:
         linear-gradient(purple 0%, red 90%),
         url('/img/gbk_bg.jpg');
-    background-blend-mode: screen;
+    background-blend-mode: screen;*/;
     /*font-family: 'Pavanam', sans-serif*/
     font-family: 'Didact Gothic', serif;
     font-size: 100%;
@@ -55,7 +55,7 @@ h2 {
     background-color: #ffeb3b;
     height: 100px;
     top: 0;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/;
     left: 0;
     display: flex;
     justify-content: space-between;
@@ -81,6 +81,32 @@ h2 {
     padding: 20px;
     margin: 5%;
 }
+
+
+.bear {
+    position: relative;
+    background: linear-gradient(purple 0%, red 90%), url('/img/gbk_bg.jpg');
+    background-blend-mode: screen; 
+    /*-webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;*/
+    width: 100%;
+    height: 50%;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    color: white;
+}
+
+    .bear h1 {
+        font-family: 'Didact Gothic', serif;
+        font-size: 400%;
+        font-weight: 900;
+        color: rgba(255,255,255, 0.95);
+        text-shadow: none;
+        letter-spacing: 12px;
+        margin-bottom: 0
+    }
 
 label {
     font-size: 18px;
@@ -113,7 +139,7 @@ textarea {
 
 .container a:hover  {
     text-decoration: underline;
-    color: lightyellow;
+    color: palevioletred;
 }
 
 .products {
@@ -121,6 +147,10 @@ textarea {
     flex-wrap: wrap;
     font-size: 30px;
 
+}
+.products:first-child {
+    align-self: center;
+    
 }
 
 .products .products-product {
@@ -176,26 +206,28 @@ textarea {
     justify-content: space-between;
 }
 .form input[type=text] {
-    background-color: lightgray;
-    border: none;
+    background-color: white;
+    border: 1px solid black;
 }
 .form input[type=submit] {
     background-color: yellow;
     padding: 25px 50px;
     width: 100%;
     font-size: large;
-    border: 0;
+    border: 1px solid white; 
 }
 
 .form input[type=submit]:hover {
-    background-color: purple;
-    color: white;
+    background-color: white;
+    color: purple;
+    border: 1px solid black;
     cursor: pointer;
 }
 
 .form textarea {
     width: 100%;
     margin-bottom: 50px;
+    border: 1px solid black;
 }
 
 .exit-button {
@@ -207,7 +239,10 @@ textarea {
 }
 
 .exit-button:hover {
-    background-color: red;
+    background-color: white;
+    border-bottom: 1px solid red;
+    border-left: 1px solid red;
+    color: red;
     cursor: pointer;
 }
 
@@ -221,11 +256,11 @@ textarea {
 .form-two input[type=text], input[type=number] {
     font-size: large;
     background-color: white;
-    border: none;
+    border: 1px solid black;
 }
 
 .form-two textarea {
-    border: none;
+    border: 1px solid black;
     background-color: white;
     width: 100%;
 }
@@ -241,18 +276,35 @@ textarea {
     padding: 25px 50px;
     width: 100%;
     font-size: large;
-    border: 0
+    border: 1px solid white;
 }
 
 .form-two input[type=submit]:hover {
-    background-color: purple;
-    color: white;
+    background-color: white;
+    color: purple;
+    border: 1px solid black;
     cursor: pointer
 }
 
 .home-products {
+    position: relative;
     display: flex;
     justify-content: space-around;
+    align-items:center;
+}
+
+.home-products h2 {
+    font-style: italic;
+}
+.home-products a {
+    font-size: 130%;
+    color: purple;
+    text-decoration:none;
+}
+
+.home-products a:hover {
+    color: palevioletred;
+
 }
 
 a {
@@ -284,18 +336,20 @@ a {
 }
 
 .details-button {
-  background-color: yellow;
-  text-align: center;
-  padding: 10px;
-  text-decoration: none;
-  margin-top: 5%;
-  margin-bottom: 5%;
+    background-color: yellow;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: 1px solid white;
 }
 
 .details-button:hover{
-  background-color: purple;
-  color: white;
+  background-color: white;
+  color: purple;
   cursor: pointer;
+  border: 1px solid black;
 }
 
 .button {
@@ -335,6 +389,25 @@ img {
 input[type=file] {
     padding: 10px; 
 }
+
+.add-button {
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.add-button a {
+    color: black;
+    background-color: lawngreen;
+    padding: 10px 30px;
+}
+
+.add-button a:hover {
+    color: lawngreen;
+    background-color: white;
+    border: 1px solid black;
+    text-decoration: none;
+}
+
 @media only screen and (min-width: 768px) {
   .details-container {
     justify-content: space-around;
