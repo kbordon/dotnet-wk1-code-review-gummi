@@ -4,7 +4,7 @@
     ViewData["Title"] = "Gummi Bear Kingdom : Reviews";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<div class="container">
 <h2>Reviews for <em>@Model.ElementAt(0).Product.Name</em></h2>
 
     @foreach (var review in Model)
@@ -21,3 +21,4 @@
     }
 
 <p>@Html.ActionLink($"Return to {@Model.ElementAt(0).Product.Name} details", "Details", "Products", new { id = @Model.ElementAt(0).ProductId})</p>
+</div>>

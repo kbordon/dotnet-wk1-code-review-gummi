@@ -3,7 +3,7 @@
     ViewData["Title"] = "Gummi Bear Kingdom : Products";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<div class="container">
 <h2>Edit: @Html.DisplayFor(model => model.Name)</h2>
 <div class="form-two">
     @using (Html.BeginForm())
@@ -37,3 +37,4 @@
     }
   </div> 
 <p>@Html.ActionLink($"Return to {@Model.Name} details", "Details", "Products", new { id = @Model.ProductId})</p>
+</div>>
