@@ -49,10 +49,6 @@ namespace GummiBearKingdom.Tests
             HomeController controller = new HomeController(mock.Object);
 
             var collection = (controller.Index() as ViewResult).ViewData.Model as List<Product>;
-            foreach(Product product in collection)
-            {
-                Console.WriteLine("#################### product name is " + product.Name + " with " + product.Reviews.Count + " reviews."); 
-            }
 
             Assert.AreEqual(2, collection[0].ProductId);
             Assert.AreEqual(3, collection[1].ProductId);
