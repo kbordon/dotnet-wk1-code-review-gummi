@@ -60,7 +60,6 @@
     <h2>Most Recent Reviews</h2>
         @if(Model.Product.Reviews.Count > 0)
         {
-            <p class="details-button">@Html.ActionLink($"See All Reviews ({Model.Product.Reviews.Count})", "GetAll", "Reviews", new { id = Model.Product.ProductId})</p>
                 if(Model.Product.Reviews.Count < 3)
                 {
                     foreach(var review in Model.Product.Reviews)
@@ -78,7 +77,8 @@
                 }
                 else
                 {
-                    for(var x = 0; x < 3; x++)
+                    <p class="details-button" onclick="location.href='@Url.Action("GetAll", "Reviews", new  {id = Model.Product.ProductId})'">See All Reviews (@Model.Product.Reviews.Count)</p>
+                    for(var x = 0; x < 3; x++)  
                     {
                         <div class="review">
                           <h3>@Model.Product.Reviews.ElementAt(x).Author</h3>
